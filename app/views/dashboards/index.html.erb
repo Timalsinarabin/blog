@@ -1,0 +1,8 @@
+<% if Current.user %>
+  <h1>Welcome back, <%= Current.user.username %>!</h1>
+<% else %>
+  <h1>Hello, Guest!</h1>
+<% end %>
+<div>
+    <%= link_to "Add Post", new_post_path, class: "btn btn-primary" %>
+</div>
