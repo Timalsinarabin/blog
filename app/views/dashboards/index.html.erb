@@ -1,8 +1,48 @@
 <% if Current.user %>
-  <h1>Welcome back, <%= Current.user.username %>!</h1>
+  <h1 class="display-4 m-4">Welcome back, <%= Current.user.username %>!</h1>
 <% else %>
-  <h1>Hello, Guest!</h1>
+  <h1 class="display-4 m-4">Hello, Guest!</h1>
 <% end %>
-<div>
-    <%= link_to "Add Post", new_post_path, class: "btn btn-primary" %>
+
+<div class="container mt-4 mb-4 ml-4 mr-4">
+    <p>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Add a post
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <%= form_with model: @blogpost, url: new_post_path, local: true do |form| %>
+    
+    <div class="mb-3 text-start">
+      <%= form.label :blogtitle, "Title", class: "form-label" %>
+      <%= form.text_field :blogtitle, class: "form-control", placeholder: "Enter title" %>
+    </div>
+
+    <div class="mb-3 text-start">
+      <%= form.label :blockbody, "Content", class: "form-label" %>
+      <%= form.text_area :blockbody, class: "form-control", placeholder: "Enter content" %>
+    </div>
+
+    <div class="mt-3">
+      <%= form.submit "Add Post", class: "btn btn-primary" %>
+    </div>
+
+    <% end %>
+
+      </div>
+    </div>
+</div>
+<div class="container mt-4 mb-4 ml-4 mr-4">
+  <% if @blogs.any? %>
+    <h2 class="mt-4">Your Posts</h2>
+    <ul class="list-group">
+      <% @blogs.each do |blog| %>
+        <li class="list-group-item">
+          <h5><%= truncate(blog.blogtitle, length: 80) %></h5>
+          <p><%= truncate(blog.blockbody, length: 150) %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
