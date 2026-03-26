@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   get "dashboard", to: "dashboards#index"
   post "new_post", to: "dashboards#create"
+  delete "delete_posts/:id", to: "dashboards#destroy", as: :delete_posts
   get "up" => "rails/health#show", as: :rails_health_check
 end

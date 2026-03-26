@@ -41,8 +41,10 @@
         <li class="list-group-item">
           <h5><%= truncate(blog.blogtitle, length: 80) %></h5>
           <p><%= truncate(blog.blockbody, length: 150) %></p>
+          <%= button_to "Delete", delete_posts_path(blog), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
         </li>
       <% end %>
     </ul>
+
   <% end %>
 </div>
