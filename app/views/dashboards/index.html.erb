@@ -6,7 +6,7 @@
 
 <div class="container mt-4 mb-4 ml-4 mr-4">
     <p>
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       Add a post
       </button>
     </p>
@@ -33,9 +33,16 @@
       </div>
     </div>
 </div>
+<h2 class="mt-4">Your Posts</h2>
+<%= form_with url: search_posts_path, method: :get, local: true do |form| %>
+  <div class="form-group m-2 ms-4 w-50">
+    <%= form.label :search, "Search Posts" %>
+    <%= form.text_field :search, class: "form-control" %>
+  </div>
+  <%= form.submit "Search Posts", class: "btn btn-primary mt-2 ms-4" %>
+<% end %>    
 <div class="container mt-4 mb-4 ml-4 mr-4">
   <% if @blogs.any? %>
-    <h2 class="mt-4">Your Posts</h2>
     <ul class="list-group">
       <% @blogs.each do |blog| %>
         <li class="list-group-item">
@@ -47,4 +54,4 @@
     </ul>
 
   <% end %>
-</div>
+</div> 
