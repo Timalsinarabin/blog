@@ -1,6 +1,10 @@
 class DashboardsController < ApplicationController
   def index
-    @blogs = Blogpost.all
+    if params[:search]
+      @blogs = Blogpost.where("blogtitle like ?", "%#{params[:search]}%")
+    else
+      @blogs = Blogpost.order(created_at: :desc)
+    end
     @blogpost = Blogpost.new
   end
   def create
