@@ -29,7 +29,7 @@ class DashboardsController < ApplicationController
     if @blogedit.update(blog_params)
       redirect_to dashboard_path, notice: "sucessfully edited blog"
     else
-      redirect_to dashboard_path, alert: "failed to edit blog"
+      redirect_to :edit, status: :unprocessable_entity
     end
   end
   private

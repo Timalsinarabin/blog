@@ -49,8 +49,8 @@
           <h5><%= truncate(blog.blogtitle, length: 80) %></h5>
           <p><%= truncate(blog.blockbody, length: 150) %></p>
           <div class="flex">
-            <%= link_to "Delete", delete_posts_path(blog), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-            <%= link_to "Edit", edit_posts_path(blog), data: { confirm: "Are you sure?" }, class: "btn btn-secondary" %>
+            <%= button_to "Delete", delete_post_path(blog), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            <%= link_to "Edit", edit_post_path(blog), class: "btn btn-secondary" %>
           </div>
         </li>
       <% end %>
