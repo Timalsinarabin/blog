@@ -4,7 +4,7 @@
   <h1 class="display-4 m-4">Hello, Guest!</h1>
 <% end %>
 
-<div class="container mt-4 mb-4 ml-4 mr-4">
+<div class="container m-4">
     <p>
       <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       Add a post
@@ -33,13 +33,13 @@
       </div>
     </div>
 </div>
-<h2 class="mt-4">Your Posts</h2>
+<h2 class="m-4">Your Posts</h2>
 <%= form_with url: search_posts_path, method: :get, local: true do |form| %>
-  <div class="form-group m-2 ms-4 w-50">
+  <div class="form-group m-4 w-50">
     <%= form.label :search, "Search Posts" %>
     <%= form.text_field :search, class: "form-control" %>
   </div>
-  <%= form.submit "Search Posts", class: "btn btn-primary mt-2 ms-4" %>
+  <%= form.submit "Search Posts", class: "btn btn-primary ms-4" %>
 <% end %>    
 <div class="container mt-4 mb-4 ml-4 mr-4">
   <% if @blogs.any? %>
@@ -48,7 +48,10 @@
         <li class="list-group-item">
           <h5><%= truncate(blog.blogtitle, length: 80) %></h5>
           <p><%= truncate(blog.blockbody, length: 150) %></p>
-          <%= button_to "Delete", delete_posts_path(blog), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          <div class="flex">
+            <%= button_to "Delete", delete_post_path(blog), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            <%= link_to "Edit", edit_post_path(blog), class: "btn btn-secondary" %>
+          </div>
         </li>
       <% end %>
     </ul>
