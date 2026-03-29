@@ -21,6 +21,17 @@ class DashboardsController < ApplicationController
       redirect_to dashboard_path, notice: "sucessfully deleted the blog"
     end
   end
+  def edit
+    @blogedit = Blogpost.find(params[:id])
+  end
+  def update
+    @blogedit = Blogpost.find(params[:id])
+    if @blogedit.update(blog_params)
+      redirect_to dashboard_path, notice: "sucessfully edited blog"
+    else
+      redirect_to dashboard_path, alert: "failed to edit blog"
+    end
+  end
   private
   def blog_params
     params.require(:blogpost).permit(:blogtitle, :blockbody)

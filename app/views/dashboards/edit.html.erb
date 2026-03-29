@@ -1,0 +1,16 @@
+<h1>Editing post</h1>
+<div>
+  <%= form_with model: @blogedit, url: update_post_path(@blogedit), method: :patch, local: true do |form| %>
+    <div class="mb-3 text-start">
+      <%= form.label :blogtitle, "Title", class: "form-label" %>
+      <%= form.text_field :blogtitle, class: "form-control", value: @blogedit.blogtitle %>
+    </div>
+    <div class="mb-3 text-start">
+      <%= form.label :blockbody, "Content", class: "form-label" %>
+      <%= form.text_area :blockbody, class: "form-control", value: @blogedit.blockbody %>
+    </div>
+    <div class="mt-3">
+      <%= form.submit "Add Post", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+</div>
