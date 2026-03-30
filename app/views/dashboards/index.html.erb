@@ -33,7 +33,7 @@
       </div>
     </div>
 </div>
-<h2 class="m-4">Your Posts</h2>
+<h2 class="m-4">All Posts</h2>
 <%= form_with url: search_posts_path, method: :get, local: true do |form| %>
   <div class="form-group m-4 w-50">
     <%= form.label :search, "Search Posts" %>
@@ -46,12 +46,19 @@
     <ul class="list-group">
       <% @blogs.each do |blog| %>
         <li class="list-group-item">
+          <p class="border-bottom display-10">@<%=blog.user.username%> has posted at <%=blog.created_at.strftime("%Y-%m-%d")%></p>
           <h5><%= truncate(blog.blogtitle, length: 80) %></h5>
           <p><%= truncate(blog.blockbody, length: 150) %></p>
-          <div class="flex">
-            <%= button_to "Delete", delete_post_path(blog), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-            <%= link_to "Edit", edit_post_path(blog), class: "btn btn-secondary" %>
-          </div>
+          <%if blog.user.username == Current.user.username%>
+            <div class="d-flex">
+              <div class="w-25">
+                <%= button_to "Delete", delete_post_path(blog), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+              </div>
+              <div>
+                <%= link_to "Edit", edit_post_path(blog), class: "btn btn-secondary" %>
+              </div>
+            </div>
+          <%end%>
         </li>
       <% end %>
     </ul>
