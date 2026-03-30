@@ -9,6 +9,7 @@ class DashboardsController < ApplicationController
   end
   def create
     @blogpost = Blogpost.new(blog_params)
+    @blogpost.user_id = Current.user.id
     if @blogpost.save
       redirect_to dashboard_path, notice: "sucessfully posted blog"
     else

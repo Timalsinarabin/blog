@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :blogposts
   has_secure_password
   validates :username, presence: true, uniqueness: true, length: { minimum: 5, maximum: 15 }
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
